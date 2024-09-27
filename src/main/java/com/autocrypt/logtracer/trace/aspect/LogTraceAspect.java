@@ -30,6 +30,10 @@ public class LogTraceAspect {
     @Pointcut("within(com.autocrypt..*Repository*)")
     public void allRepository() {}
 
+    //jpa repository 구현체를 포인트컷으로 정의
+    @Pointcut("within(org.springframework.data.jpa..*Repository*)")
+    public void allJpaRepository() {}
+
     //Controller 애너테이션에 해당하는 포인트컷 정의
     @Pointcut("within(@org.springframework.stereotype.Controller *)")
     public void controllerBean() {}
@@ -53,7 +57,7 @@ public class LogTraceAspect {
     @Pointcut("controllerBean() || restControllerBean() || serviceBean() || repositoryBean()")
     public void applicationBean() {}
 
-    @Around("applicationBean() || applicationLayer()")
+    @Around("applicationBean() || applicationLayer() || allJpaRepository()")
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         TraceStatus status = null;
         try {

@@ -3,13 +3,11 @@ package com.autocrypt.logtracer.trace.config;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Slf4j
 @AutoConfiguration
-//@Import(LogTraceConfig.class)
-//@Configuration
+@Import(LogTraceConfig.class)
 public class LogTraceAutoConfig {
 
 

@@ -28,6 +28,11 @@ public class OrderControllerV3 {
         return "post";
     }
 
+    @GetMapping("/v3/db")
+    public long dbInsertTest(){
+        return orderService.dbInsertTest();
+    }
+
     @GetMapping("/v3/no-log")
     public String noLog() {
         return "ok";

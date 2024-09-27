@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Import;
 
 @Slf4j
 @AutoConfiguration
-//@Import(LogTraceConfig.class)
-//@Configuration
+@Import(LogTraceConfig.class)
 public class LogTraceAutoConfig {
 
 

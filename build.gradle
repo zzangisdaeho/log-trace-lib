@@ -5,11 +5,11 @@ plugins {
 }
 
 group = 'com.autocrypt'
-version = '0.0.1-java-21-spring-3.3.4'
+version = '0.0.1-java-17-spring-3.3.4'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 

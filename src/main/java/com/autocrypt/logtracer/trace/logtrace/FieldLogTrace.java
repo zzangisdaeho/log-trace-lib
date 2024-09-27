@@ -2,10 +2,11 @@ package com.autocrypt.logtracer.trace.logtrace;
 
 import com.autocrypt.logtracer.trace.TraceId;
 import com.autocrypt.logtracer.trace.TraceStatus;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 public class FieldLogTrace implements LogTrace {

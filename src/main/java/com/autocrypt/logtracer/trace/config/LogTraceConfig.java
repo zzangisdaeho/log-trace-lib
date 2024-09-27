@@ -4,11 +4,12 @@ import com.autocrypt.logtracer.trace.aspect.LogTraceAspect;
 import com.autocrypt.logtracer.trace.filter.RequestWrappingFilter;
 import com.autocrypt.logtracer.trace.logtrace.LogTrace;
 import com.autocrypt.logtracer.trace.logtrace.ThreadLocalLogTrace;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.PostConstruct;
 
 @Configuration
 @Slf4j

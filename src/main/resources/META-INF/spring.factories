@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.autocrypt.logtracer.trace.config.LogTraceConfig

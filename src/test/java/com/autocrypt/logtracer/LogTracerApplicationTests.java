@@ -31,9 +31,6 @@ class LogTracerApplicationTests {
 
         Assertions.assertTrue(isLogTraceConfigPresent);
 
-        // 'logTraceAutoConfig'라는 이름의 빈이 등록되어 있는지 확인
-        boolean isLogTraceAutoConfigPresent = Arrays.asList(beanDefinitionNames).contains("com.autocrypt.logtracer.trace.config.LogTraceAutoConfig");
-        Assertions.assertTrue(isLogTraceAutoConfigPresent);
     }
 
 }

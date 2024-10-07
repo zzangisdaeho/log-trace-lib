@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnProperty(value = "log_trace", havingValue = "on")
 @Slf4j
 public class LogTraceConfig {
 

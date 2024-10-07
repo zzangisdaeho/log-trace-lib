@@ -13,8 +13,8 @@ public interface HttpTrace {
     // HTTP 요청 정보를 문자열로 반환하는 메서드 (Headers와 Body 포함)
     default Optional<String> getHttpRequestLog() {
         HttpServletRequest request = getCurrentHttpRequest();
-        if (request == null) {
-            return Optional.empty(); // HTTP 요청이 없는 경우 Optional.empty() 반환
+        if (request == null || request.getRequestURL() == null || request.getRequestURL().toString().isEmpty()) {
+            return Optional.empty(); // 유효하지 않은 HTTP 요청이거나, 테스트 상황일 경우
         }
 
         StringBuilder requestLog = new StringBuilder();

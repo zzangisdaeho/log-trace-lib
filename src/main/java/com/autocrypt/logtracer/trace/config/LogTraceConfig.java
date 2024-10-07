@@ -5,6 +5,7 @@ import com.autocrypt.logtracer.trace.filter.RequestWrappingFilter;
 import com.autocrypt.logtracer.trace.logtrace.LogTrace;
 import com.autocrypt.logtracer.trace.logtrace.ThreadLocalLogTrace;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 
 @Configuration
+@ConditionalOnProperty(value = "log_trace", havingValue = "on")
 @Slf4j
 public class LogTraceConfig {
 

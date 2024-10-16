@@ -68,7 +68,11 @@ public class LogTraceAspect {
     @Pointcut("logTraceMethod() || logTraceClass()")
     public void logTraceAnnotation() {}
 
-    @Around("applicationBean() || applicationLayer() || logTraceAnnotation() || allJpaRepositoryMethods()")
+    //controller의 initBinder는 제외
+    @Pointcut("execution(* *..*Controller.initBinder(..))")
+    public void initBinderMethods() {}
+
+    @Around("(applicationBean() || applicationLayer() || logTraceAnnotation() || allJpaRepositoryMethods()) && !initBinderMethods()")
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         TraceStatus status = null;
         try {

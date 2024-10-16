@@ -9,5 +9,4 @@ public interface LogTrace {
     void end(TraceStatus status);
     void exception(TraceStatus status, Exception e);
 
-
 }

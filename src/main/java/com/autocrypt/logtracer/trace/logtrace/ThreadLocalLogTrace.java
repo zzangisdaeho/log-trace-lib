@@ -83,4 +83,10 @@ public class ThreadLocalLogTrace implements LogTrace, HttpTrace {
         }
         return sb.toString();
     }
+
+    public static String currentId(){
+        TraceId traceId = traceIdHolder.get();
+        if(traceId == null) return null;
+        return traceId.getId();
+    }
 }

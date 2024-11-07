@@ -11,7 +11,7 @@ public class ThreadLocalLogTrace implements LogTrace, HttpTrace {
     private static final String COMPLETE_PREFIX = "<--";
     private static final String EX_PREFIX = "<X-";
 
-    private ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>();
+    public static ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>();
 
     @Override
     public TraceStatus begin(String message) {
@@ -82,5 +82,11 @@ public class ThreadLocalLogTrace implements LogTrace, HttpTrace {
             sb.append( (i == level) ? "|" + prefix : "|   "); // 현재 level에서 prefix 추가
         }
         return sb.toString();
+    }
+
+    public static String currentId(){
+        TraceId traceId = traceIdHolder.get();
+        if(traceId == null) return null;
+        return traceId.getId();
     }
 }

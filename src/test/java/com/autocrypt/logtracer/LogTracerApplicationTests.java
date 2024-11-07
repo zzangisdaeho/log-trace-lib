@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.Arrays;
 
 @SpringBootTest
+@TestPropertySource(properties = {"log_trace=on"})
 class LogTracerApplicationTests {
 
     @Autowired
@@ -27,7 +29,7 @@ class LogTracerApplicationTests {
         Arrays.stream(beanDefinitionNames).forEach(System.out::println);
 
         // 'logTraceConfig'라는 이름의 빈이 등록되어 있는지 확인
-        boolean isLogTraceConfigPresent = Arrays.asList(beanDefinitionNames).contains("logTraceConfig");
+        boolean isLogTraceConfigPresent = Arrays.stream(beanDefinitionNames).anyMatch(s -> s.contains("LogTraceConfig"));
 
         Assertions.assertTrue(isLogTraceConfigPresent);
 

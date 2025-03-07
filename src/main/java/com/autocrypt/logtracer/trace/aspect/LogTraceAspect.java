@@ -8,6 +8,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Aspect
 public class LogTraceAspect {
@@ -77,9 +80,12 @@ public class LogTraceAspect {
         TraceStatus status = null;
         try {
             String message = joinPoint.getSignature().toLongString();
-            status = logTrace.begin(message);
+            Object[] args = joinPoint.getArgs(); // 메서드 매개변수 가져오기
+            String params = argsToString(args); // 매개변수를 문자열로 변환
 
-            //로직 호출
+            status = logTrace.begin(message + " args=" + params); // 매개변수 포함하여 로그 출력
+
+            // 로직 호출
             Object result = joinPoint.proceed();
 
             logTrace.end(status);
@@ -87,6 +93,24 @@ public class LogTraceAspect {
         } catch (Exception e) {
             logTrace.exception(status, e);
             throw e;
+        }
+    }
+
+    // 매개변수를 문자열로 변환하는 헬퍼 메서드
+    private String argsToString(Object[] args) {
+        try {
+            if (args == null || args.length == 0) return "[]";
+            return Arrays.stream(args)
+                    .map(arg -> {
+                        try {
+                            return arg != null ? arg.toString() : "null";
+                        } catch (Exception e) {
+                            return "[toString() 오류]";
+                        }
+                    })
+                    .collect(Collectors.joining(", ", "[", "]"));
+        } catch (Exception e) {
+            return "[매개변수 변환 오류]";
         }
     }
 }
